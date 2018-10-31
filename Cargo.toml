@@ -1,0 +1,7 @@
+[package]
+name = "rsdb"
+version = "0.1.0"
+authors = ["jack <steve.a.shogren@gmail.com>"]
+
+[dependencies]
+sqlpop = "0.3.0"
