@@ -38,23 +38,31 @@ fn parse(s:&str) -> Vec<Option<Cmd>> {
 mod tests {
     use super::*;
     use sqlpop::ast::*;
+    use sqlpop::ast::Cmd::Stmt;
+    use sqlpop::ast::Stmt::Select;
 
 
     #[test]
     fn test_select() {
         let x = parse("Select * from users;");
-        println!("{:?}", x);
+        // println!("{:?}", x);
         let y = x.first();
-        if let Some(stmt) = y {
-            match stmt {
-                Select {with: w,
-                        body: bod,
-                        order_by: ord,
-                        limit: lim} => {assert_eq!(1,2),},
-                _ => assert_eq!(1,2),
+        if let Some(i) = y {
+            if let Some(ref o) = *i {
+                if let Stmt (ref stmt) = *o {
+                    if let Select (ref sel) = *stmt {
+                        println!("{:?}", sel);
+                        assert_eq!(1,2);
+                    };
+                };
+                //if let Some(ref o) = *i {
+                //    if let Select(ref stru) = *o {
+                //        println!("{:?}", stru);
+                //        assert_eq!(1,2);
+                //    };
+                //};
             };
         };
-        assert_eq!(1,2);
     }
 }
 
